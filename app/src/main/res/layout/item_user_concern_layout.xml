@@ -1,159 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="20dp"
-    android:paddingTop="24dp"
-    android:paddingRight="20dp">
-
-    <ImageView
-        android:id="@+id/item_user_concern_image"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginRight="12dp"
-        android:src="@mipmap/ic_launcher" />
-
-    <ImageView
-        android:id="@+id/item_user_concern_follow_btn"
-        android:layout_width="64dp"
-        android:layout_height="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="17dp"
-        android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher" />
-
-    <TextView
-        android:id="@+id/item_user_concern_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/item_user_concern_follow_btn"
-        android:layout_toRightOf="@+id/item_user_concern_image"
-        android:maxLines="1"
-        android:textColor="#333333"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        tools:text="中美经贸磋商最新进展" />
-
-    <TextView
-        android:id="@+id/item_user_concern_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/item_user_concern_title"
-        android:layout_marginTop="4dp"
-        android:layout_toLeftOf="@+id/item_user_concern_follow_btn"
-        android:layout_toRightOf="@+id/item_user_concern_image"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="#AAB0BB"
-        android:textSize="12sp"
-        android:text="中美经贸磋商最新进展" />
-
-    <TextView
-        android:id="@+id/item_user_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/item_user_concern_desc"
-        android:layout_marginTop="4dp"
-        android:layout_toRightOf="@+id/item_user_concern_image"
-        android:textColor="#AAB0BB"
-        android:textSize="11sp"
-        android:text="17:38" />
+    android:layout_marginStart="@dimen/report_new_title_margin"
+    android:layout_marginEnd="@dimen/report_new_title_margin"
+    android:background="@drawable/shape_report_round_border">
 
     <LinearLayout
-        android:id="@+id/item_user_concern_arrow"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/item_user_concern_desc"
-        android:layout_marginTop="4dp"
-        android:layout_toRightOf="@+id/item_user_time"
+        android:id="@+id/topTitle"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
         android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:paddingLeft="6dp"
-        android:paddingTop="3dp">
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/item_user_concern_arrow_image"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_report_snoring"
+            tools:ignore="ContentDescription" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow_down_icon" />
+            android:layout_marginStart="10dp"
+            android:text="@string/snoring"
+            android:textColor="#FFFFFFFF"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:textColor="#FFFFFFFF"
+            android:textSize="16sp" />
+
+        <FrameLayout
+            android:layout_width="22dp"
+            android:layout_height="32dp">
+
+            <ImageView
+                android:id="@+id/arrowImage"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center|end"
+                android:background="@drawable/shape_round_ebebf5"
+                android:rotation="0"
+                android:src="@drawable/ic_arrow_down" />
+        </FrameLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/item_user_concern_link_layout"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/item_user_time"
-        android:layout_marginTop="4dp"
-        android:layout_toRightOf="@+id/item_user_concern_image"
-        android:background="@drawable/shape_reactange_light_white"
-        android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:visibility="visible"
-        tools:visibility="visible">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topTitle"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_report_voices" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp">
-
-            <View
-                android:id="@+id/item_user_concern_link_oval"
-                android:layout_width="3dp"
-                android:layout_height="3dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/roll_shape_rectangle" />
-
-            <TextView
-                android:id="@+id/item_user_concern_link_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:lineSpacingMultiplier="1.2"
-                android:textColor="#333333"
-                android:textSize="12sp"
-                android:text="中美经贸磋商最新进展中美经贸磋商
-                最新进展中美经贸磋商最新进展中美经贸磋商最新进展中美经贸
-                磋商最新进展中美经贸磋商最新进展中美经贸磋商最新进展中美经
-                贸磋商最新进展中美经贸磋商最新进展中美经贸磋商最新进展中美经贸磋商最新进展中美经贸磋商最新进展"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:src="@mipmap/ic_launcher"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:src="@mipmap/ic_launcher"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
-
-        </LinearLayout>
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/item_user_concern_link_layout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="4dp"-->
+    <!--        android:background="@drawable/shape_reactange_light_white"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:paddingStart="2dp"-->
+    <!--        android:paddingEnd="2dp"-->
+    <!--        android:paddingBottom="10dp"-->
+    <!--        android:visibility="visible"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/topTitle"-->
+    <!--        tools:visibility="visible">-->
+    <!--    </LinearLayout>-->
 
 
-    </LinearLayout>
-
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/transparent" /> <!-- 设置背景颜色 -->
+    <corners android:radius="16dp" /> <!-- 调整此值以改变圆角的大小 -->
+    <!-- 调整此值以改变边框的宽度 -->
+    <stroke
+        android:width="1dp"
+        android:color="#ffffff" /> <!-- 设置边框颜色 -->
+</shape>

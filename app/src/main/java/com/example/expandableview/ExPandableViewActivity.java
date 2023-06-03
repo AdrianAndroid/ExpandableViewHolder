@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.expandableview.recycleritemanim.ExpandableViewHoldersUtil;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class ExPandableViewActivity extends AppCompatActivity {
@@ -29,7 +30,7 @@ public class ExPandableViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_recycler_view);
-        ExpandableViewHoldersUtil.getInstance().init().setNeedExplanedOnlyOne(false);
+        ExpandableViewHoldersUtil.getInstance().init().setNeedExplanedOnlyOne(true);
 
         initView();
     }
@@ -70,11 +71,11 @@ public class ExPandableViewActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int position) {
 
-            viewHolder.tvTitle.setText("中美经贸磋商 po=" + position);
+//            viewHolder.tvTitle.setText("中美经贸磋商 po=" + position);
 
             keepOne.bind(viewHolder, position);
 
-            viewHolder.tvTitle.setOnClickListener(new View.OnClickListener() {
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 //                    if(ExpandableViewHoldersUtil.isExpaned(position)){
@@ -86,12 +87,12 @@ public class ExPandableViewActivity extends AppCompatActivity {
                 }
             });
 
-            viewHolder.lvArrorwBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    keepOne.toggle(viewHolder);
-                }
-            });
+//            viewHolder.lvArrorwBtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    keepOne.toggle(viewHolder);
+//                }
+//            });
         }
     }
 
@@ -99,22 +100,32 @@ public class ExPandableViewActivity extends AppCompatActivity {
         TextView tvTitle;
         ImageView arrowImage;
         LinearLayout lvArrorwBtn;
-        LinearLayout lvLinearlayout;
+        View lvLinearlayout;
         TextView contentTv;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvTitle = itemView.findViewById(R.id.item_user_concern_title);
-            lvLinearlayout = itemView.findViewById(R.id.item_user_concern_link_layout);
-            lvArrorwBtn = itemView.findViewById(R.id.item_user_concern_arrow);
-            arrowImage = itemView.findViewById(R.id.item_user_concern_arrow_image);
-            contentTv = itemView.findViewById(R.id.item_user_concern_link_text);
+//            tvTitle = itemView.findViewById(R.id.item_user_concern_title);
+            lvLinearlayout = itemView.findViewById(R.id.mRecyclerView);
+//            lvArrorwBtn = itemView.findViewById(R.id.item_user_concern_arrow);
+            arrowImage = itemView.findViewById(R.id.arrowImage);
+//            contentTv = itemView.findViewById(R.id.item_user_concern_link_text);
 
             keepOne = ExpandableViewHoldersUtil.getInstance().getKeepOneHolder();
 
+            initRecyclerView(lvLinearlayout);
+
             lvLinearlayout.setVisibility(View.GONE);
             lvLinearlayout.setAlpha(0);
+        }
+
+        private void initRecyclerView(View lvLinearlayout) {
+            if (lvLinearlayout instanceof RecyclerView) {
+                RecyclerView mRecyclerView = (RecyclerView) lvLinearlayout;
+                mRecyclerView.setLayoutManager(new LinearLayoutManager(lvLinearlayout.getContext(), LinearLayoutManager.VERTICAL, false));
+                mRecyclerView.setAdapter(new NoiseItemAdapter(ThreadLocalRandom.current().nextInt(2, 5)));
+            }
         }
 
         @Override

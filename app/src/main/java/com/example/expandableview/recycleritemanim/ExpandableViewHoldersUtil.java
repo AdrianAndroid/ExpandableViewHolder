@@ -84,7 +84,9 @@ public class ExpandableViewHoldersUtil {
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                imageView.setRotation((float) valueAnimator.getAnimatedValue());
+                if (imageView != null) {
+                    imageView.setRotation((float) valueAnimator.getAnimatedValue());
+                }
             }
         });
         valueAnimator.start();
